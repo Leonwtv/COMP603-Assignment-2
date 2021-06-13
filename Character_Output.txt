@@ -1,0 +1,12 @@
+Your Character:
+Name: Yorj Ara
+Race: Half-Orc
+Race abilities: [Darkvision, Menacing, Relentless Endurance, Savage Attacks]
+Class: Rogue
+Class traits: [Expertise, Sneak Attack, Thieve's Gant, Focus, Exploits, Roguish Archetype]
+Strength: 15
+Dexterity: 9
+Constitution: 14
+Intelligence: 12
+Wisdom: 14
+Charisma: 8

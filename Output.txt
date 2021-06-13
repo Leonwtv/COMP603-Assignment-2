@@ -1,0 +1,12 @@
+Your Character:
+Name: Geralt Darkbane
+Race: Human
+Race abilities: [Extra Language]
+Class: Sorcerer
+Class traits: [Sorcery, Metamagic, Sorcerous Origin]
+Strength: 11
+Dexterity: 10
+Constitution: 11
+Intelligence: 17
+Wisdom: 10
+Charisma: 15
