@@ -5,8 +5,6 @@ import java.io.*;
 import static java.lang.System.*;
 import java.util.Arrays;
 import java.io.IOException;
-
-
 import java.io.File;
 import java.io.FileWriter;
 import java.sql.ResultSet;
@@ -16,46 +14,41 @@ import java.sql.Connection;
 import java.sql.DriverManager;
         
 //Method managing writingto file functionality
-public class WriteToFile {
+ class WriteToFile {
    
             
     public static void fileWriterCharacter() {
         
         UserCreatedCharacter writeCharacterData = UserCreatedCharacter.getInstance();   
-        try {
-        FileWriter fwrite = new FileWriter("Character_Output.txt");
-        PrintWriter pwrite = new PrintWriter(fwrite);
         
-        pwrite.println("Your Character:");
-        pwrite.println("Name: " + writeCharacterData.getName());
-        pwrite.println("Race: " + writeCharacterData.getRace());
-        pwrite.println("Race abilities: " + Arrays.toString(writeCharacterData.getAbilities()));
-        pwrite.println("Class: " + writeCharacterData.getPlayerClass());
-        pwrite.println("Class traits: " + Arrays.toString(writeCharacterData.getClassFeatures()));
-        pwrite.println("Strength: " + writeCharacterData.getStrength());
-        pwrite.println("Dexterity: " + writeCharacterData.getDexterity());
-        pwrite.println("Constitution: " + writeCharacterData.getConstitution());
-        pwrite.println("Intelligence: " + writeCharacterData.getIntelligence());
-        pwrite.println("Wisdom: " + writeCharacterData.getWisdom());
-        pwrite.println("Charisma: " + writeCharacterData.getCharisma());
+   try {
+      FileWriter pwrite = new FileWriter("Character_Output.txt");
+      pwrite.write("Your Character:");
+        pwrite.write("\nName: " + writeCharacterData.getName());
+        pwrite.write("\nRace: " + writeCharacterData.getRace());
+        pwrite.write("\nRace abilities: " + Arrays.toString(writeCharacterData.getAbilities()));
+        pwrite.write("\nClass: " + writeCharacterData.getPlayerClass());
+        pwrite.write("\nClass traits: " + Arrays.toString(writeCharacterData.getClassFeatures()));
+        pwrite.write("\nStrength: " + writeCharacterData.getStrength());
+        pwrite.write("\nDexterity: " + writeCharacterData.getDexterity());
+        pwrite.write("\nConstitution: " + writeCharacterData.getConstitution());
+        pwrite.write("\nIntelligence: " + writeCharacterData.getIntelligence());
+        pwrite.write("\nWisdom: " + writeCharacterData.getWisdom());
+        pwrite.write("\nCharisma: " + writeCharacterData.getCharisma());
         
-        pwrite.close();
-        }
-        catch (IOException e) {
-            out.println("Error");
-        }
+      
+      pwrite.close();
+      System.out.println("Successfully wrote to file.");
+    } catch (IOException e) {
+      System.out.println("An error occurred.");
+      e.printStackTrace();
     }
+  }
     
-   
-    
-    
-    
-    
-public static void fileWriterDatabase() {
-     
-  
 
-Connection connect = null;
+    
+ public static void fileWriterDatabase() {
+ Connection connect = null;
 
 Statement s = null;
 
@@ -63,19 +56,17 @@ Statement s = null;
 
 try {
 
-Class.forName("org.apache.derby.jdbc.ClientDriver.class");
-
-connect =  DriverManager.getConnection("jdbc:derby://localhost:1527/DnD_Characters_Database", "username","password");
+connect =  DriverManager.getConnection("jdbc:derby:Characters_Database_X;create=true");
 
 s = connect.createStatement();
 
 
-String sql = "SELECT * FROM DND_CHARACTERS_TABLE";
+String sql = "SELECT * FROM CHARACTER_TABLE";
 ResultSet rec = s.executeQuery(sql);
 
  
 
-String path = "E:\\NEW BACKUP\\UNI 2ND YEAR\\COMP603 ASSIGNMENT PART 2\\comp603 part 2\\DND_CHARACTERS_LIST";
+String path = "E:\\NEW BACKUP\\UNI 2ND YEAR\\COMP603 ASSIGNMENT PART 2\\comp603 part 2\\DND_CHARACTERS_LIST.txt";
 
 FileWriter writer;
 
@@ -156,6 +147,9 @@ e.printStackTrace();
 }   
      }
       
-}
+}       
+
+
         
    
+

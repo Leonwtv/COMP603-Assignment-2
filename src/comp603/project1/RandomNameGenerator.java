@@ -26,12 +26,16 @@ public class RandomNameGenerator {
         firstName = firstNames[rand.nextInt(numberOfNames)];
         lastName = lastNames[rand.nextInt(numberOfNames)];
         System.out.println(firstName + " " + lastName);
-     
+        String fullName = firstName + " " + lastName;
     }
     /**Accessor for the generated full name, returns name*/
+     public void setResult(String fullName){
+        this.fullName = fullName;
+        }
+     
     public String getFullName()
      {
-        return firstName + " " + lastName;
+        return fullName;
      }
     
 }

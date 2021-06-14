@@ -121,7 +121,7 @@ public class LaunchPageFrame extends javax.swing.JFrame {
     
     //Connect_To_DnD_Characters_Table activated from pressing COTINUE button
     private void premadeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_premadeButtonActionPerformed
-        Connect_To_DnD_Characters_Table showDatabaseFrame = new Connect_To_DnD_Characters_Table();
+        Connect_To_Character_Database showDatabaseFrame = new Connect_To_Character_Database();
         showDatabaseFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
          showDatabaseFrame.setTitle("DND CHARACTER CREATOR");
          

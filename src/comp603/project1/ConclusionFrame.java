@@ -14,10 +14,12 @@ import java.sql.*;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.math.BigDecimal;
 
 public class ConclusionFrame extends javax.swing.JFrame {
 
 UserCreatedCharacter completedCharacter = UserCreatedCharacter.getInstance();
+WriteToFile fetchOutputCharacters = new WriteToFile();
 
     /**
      * Creates new form ConclusionFrame
@@ -67,6 +69,7 @@ UserCreatedCharacter completedCharacter = UserCreatedCharacter.getInstance();
         charismaLabel = new javax.swing.JLabel();
         fileWriteEntireDatabaseButton = new javax.swing.JButton();
         characterOutButton = new javax.swing.JButton();
+        characterAddedLabel = new javax.swing.JLabel();
 
         jList1.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -140,31 +143,40 @@ UserCreatedCharacter completedCharacter = UserCreatedCharacter.getInstance();
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(strengthLabel)
-                                    .addComponent(dexterityLabel))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(strengthLabel)
+                                            .addComponent(dexterityLabel))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 33, Short.MAX_VALUE)
+                                        .addComponent(addToDatabaseButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(intelligenceLabel)
-                                    .addComponent(charismaLabel)
-                                    .addComponent(wisdomLabel)
-                                    .addComponent(characterOutButton))
-                                .addGap(28, 28, 28))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nameLabel)
-                                .addComponent(raceLabel))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(intelligenceLabel)
+                                            .addComponent(charismaLabel)
+                                            .addComponent(wisdomLabel))
+                                        .addGap(104, 115, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(10, 10, 10)
+                                        .addComponent(characterAddedLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nameLabel)
+                                    .addComponent(raceLabel)
                                     .addComponent(conclusionLabel)
                                     .addComponent(classLabel)
                                     .addComponent(constitutionLabel))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(addToDatabaseButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(fileWriteEntireDatabaseButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(characterOutButton)
+                .addGap(34, 34, 34))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,14 +202,15 @@ UserCreatedCharacter completedCharacter = UserCreatedCharacter.getInstance();
                     .addComponent(constitutionLabel)
                     .addComponent(charismaLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(characterOutButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(liketoaddPanel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addToDatabaseButton)
-                    .addComponent(fileWriteEntireDatabaseButton))
-                .addContainerGap())
+                    .addComponent(characterAddedLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(liketoaddPanel)
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fileWriteEntireDatabaseButton)
+                    .addComponent(characterOutButton)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -219,17 +232,15 @@ UserCreatedCharacter completedCharacter = UserCreatedCharacter.getInstance();
 
         try {
         //DataBase Table Connection
-        String host = "jdbc:derby://localhost:1527/DnD_Characters_Database";
-        String uName = "username";
-        String uPass = "password"; 
+         String databaseURL = "jdbc:derby:Characters_Database_X;create=true";
 
-        Connection con = DriverManager.getConnection(host, uName, uPass);    
+         
+        Connection con = DriverManager.getConnection(databaseURL);    
         Statement stmt = con.createStatement();
         ResultSet rs;
         
-        //Prepared Statment
-        PreparedStatement ps = con.prepareStatement("INSERT INTO DND_CHARACTERS_TABLE " +
-        "VALUES(?,?,?,?,?,?,?,?,?)");
+        //Prepared Statment to add the created character into the database table
+        PreparedStatement ps = con.prepareStatement("INSERT INTO CHARACTER_TABLE VALUES(?,?,?,?,?,?,?,?,?,?,?)");
         
         ps.setString(1,completedCharacter.getName());
         ps.setString(2,completedCharacter.getRace());
@@ -240,7 +251,9 @@ UserCreatedCharacter completedCharacter = UserCreatedCharacter.getInstance();
         ps.setInt(7,completedCharacter.getIntelligence());
         ps.setInt(8,completedCharacter.getWisdom());
         ps.setInt(9,completedCharacter.getCharisma());
-     
+        ps.setString(10,"Race Abilities");
+        ps.setString(11,"Class Abilities");
+        
         //Execution of Query
         ps.executeUpdate();
         
@@ -248,23 +261,21 @@ UserCreatedCharacter completedCharacter = UserCreatedCharacter.getInstance();
         } catch (Exception e) { 
             System.err.println("Got an exception! "); 
             System.err.println(e.getMessage()); 
-        }  
+        } 
         
-        
-          
+          characterAddedLabel.setText("Added to Database");               
     }//GEN-LAST:event_addToDatabaseButtonActionPerformed
 
     private void fileWriteEntireDatabaseButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileWriteEntireDatabaseButtonActionPerformed
      // TODO add your handling code here:
-    WriteToFile fetchOutputCharacter = new WriteToFile();
-    fetchOutputCharacter.fileWriterCharacter();
+    fetchOutputCharacters.fileWriterDatabase();
 		
     }//GEN-LAST:event_fileWriteEntireDatabaseButtonActionPerformed
 
     private void characterOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_characterOutButtonActionPerformed
      
-    WriteToFile fetchOutputCharacter =new WriteToFile();
-    fetchOutputCharacter.fileWriterDatabase();
+    
+    fetchOutputCharacters.fileWriterCharacter();
     }//GEN-LAST:event_characterOutButtonActionPerformed
 
         
@@ -272,6 +283,7 @@ UserCreatedCharacter completedCharacter = UserCreatedCharacter.getInstance();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addToDatabaseButton;
+    private javax.swing.JLabel characterAddedLabel;
     private javax.swing.JButton characterOutButton;
     private javax.swing.JLabel charismaLabel;
     private javax.swing.JLabel classLabel;

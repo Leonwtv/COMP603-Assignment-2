@@ -19,3 +19,10 @@ Rook Yureth Human Warlock 14
 Rook Rull Half-Orc Wizard 13
 Asher Karna Human Warlock 15
 Geralt Giantslayer Elf Wizard 12
+Kor Ilo,Dwarf,Fighter,13,14,10,12,9,7
+Jenta MireMurker,Half-Orc,Warlock,10,9,13,9,14,17
+Eron Leaf,Elf,Ranger,13,8,12,6,16,12
+Lol Jou,Gnome,Sorcerer,10,13,7,9,12,10
+Theera Loj,Tiefling,Sorcerer,12,15,7,14,9,20
+LO LI,Half-Elf,Sorcerer,9,16,10,7,15,17
+Per Iro,Half-Elf,Warlock,15,9,12,10,7,10

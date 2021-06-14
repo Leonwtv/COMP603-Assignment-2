@@ -29,6 +29,8 @@ public class Roll4D6 {
     public void setResult(int result){
         this.result = result;
         }
+    
+    
         public int getResult(){
         return result;
         }

@@ -42,7 +42,7 @@ public class LaunchPage implements ActionListener{
     public void actionPerformed(ActionEvent e){
         
         if(e.getSource()==myButton){  
-           Connect_To_DnD_Characters_Table showDatabaseFrame = new Connect_To_DnD_Characters_Table();
+           Connect_To_Character_Database showDatabaseFrame = new Connect_To_Character_Database();
              
               
            NameGUI nameGui = new NameGUI();
