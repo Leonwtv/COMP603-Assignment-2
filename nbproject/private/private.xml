@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="5">
         <file>
             <url>src/comp603/project1/UserCharacterClass.java</url>
             <bookmark id="1">
@@ -9,15 +9,24 @@
                 <key/>
             </bookmark>
         </file>
+        <file>
+            <url>src/comp603/project1/RaceFrame.java</url>
+            <bookmark id="5">
+                <name/>
+                <line>218</line>
+                <key/>
+            </bookmark>
+        </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/NEW%20BACKUP/UNI%202ND%20YEAR/COMP603%20ASSIGNMENT%20PART%202/comp603%20part%202/src/comp603/project1/UserCreatedCharacter.java</file>
+            <file>file:/E:/NEW%20BACKUP/UNI%202ND%20YEAR/COMP603%20ASSIGNMENT%20PART%202/comp603%20part%202/src/comp603/project1/DatabaseConnection.java</file>
+            <file>file:/E:/NEW%20BACKUP/UNI%202ND%20YEAR/COMP603%20ASSIGNMENT%20PART%202/comp603%20part%202/src/comp603/project1/LookAndFeelAdjustment.java</file>
+            <file>file:/E:/NEW%20BACKUP/UNI%202ND%20YEAR/COMP603%20ASSIGNMENT%20PART%202/comp603%20part%202/src/comp603/project1/RandomNameGenerator.java</file>
             <file>file:/E:/NEW%20BACKUP/UNI%202ND%20YEAR/COMP603%20ASSIGNMENT%20PART%202/comp603%20part%202/src/comp603/project1/RaceFrame.java</file>
             <file>file:/E:/NEW%20BACKUP/UNI%202ND%20YEAR/COMP603%20ASSIGNMENT%20PART%202/comp603%20part%202/src/comp603/project1/LaunchPageFrame.java</file>
             <file>file:/E:/NEW%20BACKUP/UNI%202ND%20YEAR/COMP603%20ASSIGNMENT%20PART%202/comp603%20part%202/src/comp603/project1/NameMakerFrame.java</file>
-            <file>file:/E:/NEW%20BACKUP/UNI%202ND%20YEAR/COMP603%20ASSIGNMENT%20PART%202/comp603%20part%202/src/comp603/project1/AttributesTemplate.java</file>
-            <file>file:/E:/NEW%20BACKUP/UNI%202ND%20YEAR/COMP603%20ASSIGNMENT%20PART%202/comp603%20part%202/src/comp603/project1/ClassFrame.java</file>
+            <file>file:/E:/NEW%20BACKUP/UNI%202ND%20YEAR/COMP603%20ASSIGNMENT%20PART%202/comp603%20part%202/src/comp603/project1/ConclusionFrame.java</file>
         </group>
     </open-files>
 </project-private>

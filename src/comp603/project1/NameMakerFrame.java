@@ -1,23 +1,18 @@
-
 package comp603.project1;
 
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 public class NameMakerFrame extends javax.swing.JFrame {
     
-     UserCreatedCharacter fetchName = UserCreatedCharacter.getInstance();
-     String nameAnswer;
-
-    /**
-     * Creates new form RandomFrame
-     */
+    UserCreatedCharacter fetchName = UserCreatedCharacter.getInstance();
+    RandomNameGenerator createRandomName = new RandomNameGenerator();
+    String nameAnswer;
+    /**Creates new form RandomFrame*/
     public NameMakerFrame() {
         initComponents();
     }
 
-    /*
-     * Method called from within the constructor to initialize the form.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -100,7 +95,7 @@ public class NameMakerFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(nameMakerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(nameMakerPanelLayout.createSequentialGroup()
-                                .addComponent(nameResultLabel)
+                                .addComponent(nameResultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(continueButton))
                             .addGroup(nameMakerPanelLayout.createSequentialGroup()
@@ -147,14 +142,14 @@ public class NameMakerFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void randomNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_randomNameButtonActionPerformed
-     RandomNameGenerator createRandomName = new RandomNameGenerator();
-     createRandomName.createName();
-     nameAnswer = createRandomName.getFullName();
-     fetchName.setName(nameAnswer);
-     
-     //Changes label to show thr randomly generated name
-     nameResultLabel.setText(fetchName.getName());
-     
+        RandomNameGenerator createRandomName = new RandomNameGenerator();
+        createRandomName.createName();
+        nameAnswer = createRandomName.getFullName();
+        fetchName.setName(nameAnswer);
+        fetchName.setName(createRandomName.getFullName());
+
+        //Changes label to show the randomly generated name
+        nameResultLabel.setText(fetchName.getName());
     }//GEN-LAST:event_randomNameButtonActionPerformed
 
     private void nameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTextFieldActionPerformed
@@ -162,28 +157,30 @@ public class NameMakerFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_nameTextFieldActionPerformed
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
-      String nameAnswer = nameTextField.getText();
-        nameTextField.setText(String.valueOf(nameAnswer));
-        
-        fetchName.setName(nameAnswer);
+      
         System.out.println("Your name is " + fetchName.getName());
-        
-        
-    //Calling of BaseStatsFrame Class    
-    BaseStatsFrame baseStatsFrame = new BaseStatsFrame();  
-    baseStatsFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        
-    baseStatsFrame.setBounds(200, 200, 600, 600);
-    baseStatsFrame.setTitle("DND CHARACTER CREATOR");
-    baseStatsFrame.setVisible(true);
-    
-    dispose();    
+        //Calling of BaseStatsFrame Class    
+        BaseStatsFrame baseStatsFrame = new BaseStatsFrame();  
+        baseStatsFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        baseStatsFrame.setBounds(200, 200, 600, 600);
+        baseStatsFrame.setTitle("DND CHARACTER CREATOR");
+        baseStatsFrame.setVisible(true);
+        dispose();    
     }//GEN-LAST:event_continueButtonActionPerformed
 
     private void submitNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitNameButtonActionPerformed
-            
+        
+        //Error handling in case nameTextField is empty when SUBMIT button is pressed
+        if(nameTextField.getText().length() <=0)
+            {
+                JOptionPane.showMessageDialog(null,"Text field empty, please type character name");
+            }
+
+        nameAnswer = nameTextField.getText();
+        nameTextField.setText(String.valueOf(nameAnswer));
+        fetchName.setName(nameAnswer);
         //Changes label to show the typed name
-            nameResultLabel.setText(nameTextField.getText());
+        nameResultLabel.setText(nameTextField.getText());
     }//GEN-LAST:event_submitNameButtonActionPerformed
 
     /**

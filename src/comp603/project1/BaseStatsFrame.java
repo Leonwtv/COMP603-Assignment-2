@@ -2,47 +2,44 @@ package comp603.project1;
 
 import javax.swing.WindowConstants;
 
-
 public class BaseStatsFrame extends javax.swing.JFrame {
     
     UserCreatedCharacter fetchBaseStats = UserCreatedCharacter.getInstance();
-    
-/*Setting character values to dice roll An instance of Roll4D6 is created for each
-ability, in order to generate a new random roll for each ability*/
-    
-   Roll4D6 strengthRoll = new Roll4D6();
-   Roll4D6 dexterityRoll = new Roll4D6();
-   Roll4D6 constitutionRoll = new Roll4D6();
-   Roll4D6 intelligenceRoll = new Roll4D6();
-   Roll4D6 wisdomRoll = new Roll4D6();
-   Roll4D6 charismaRoll = new Roll4D6();
-       
+   
     public BaseStatsFrame() {
         initComponents();
-   
-   //The attribute variables are set to to the results of the Roll4D6 instances created above
-   fetchBaseStats.setStrength(strengthRoll.getResult());
-   fetchBaseStats.setDexterity(dexterityRoll.getResult());
-   fetchBaseStats.setConstitution(constitutionRoll.getResult()); 
-   fetchBaseStats.setIntelligence(intelligenceRoll.getResult());
-   fetchBaseStats.setWisdom(wisdomRoll.getResult());
-   fetchBaseStats.setCharisma(charismaRoll.getResult());
-   
-   //Text of the jlabels
-   baseStatsLabel1.setText("In order to play Dungeons and Dragons, your character " +fetchBaseStats.getName() + " will need attribute values");
-   strengthLabel.setText("Strength = " + String.valueOf(strengthRoll.getResult()));
-   dexterityLabel.setText("Dexterity = " + String.valueOf(dexterityRoll.getResult()));
-   constitutionLabel.setText("Constitution = " + String.valueOf(constitutionRoll.getResult()));
-   intelligenceLabel.setText("Intelligence = " + String.valueOf(intelligenceRoll.getResult()));
-   wisdomLabel.setText("Wisdom = " + String.valueOf(wisdomRoll.getResult()));
-   charismaLabel.setText("Charisma = " + String.valueOf(charismaRoll.getResult()));
-  
+        rollDice();
     }
-
-    /**
-     * Method called from within the constructor to initialize the form.
-     */
     
+   /*Method sets character values to dice rolls. An instance of Roll4D6 is created for each
+   ability, in order to generate a new random roll for each ability*/
+   public void rollDice(){
+ 
+       Roll4D6 strengthRoll = new Roll4D6();
+       Roll4D6 dexterityRoll = new Roll4D6();
+       Roll4D6 constitutionRoll = new Roll4D6();
+       Roll4D6 intelligenceRoll = new Roll4D6();
+       Roll4D6 wisdomRoll = new Roll4D6();
+       Roll4D6 charismaRoll = new Roll4D6();
+
+       //The attribute variables are set to to the results of the Roll4D6 instances created above
+       fetchBaseStats.setStrength(strengthRoll.getResult());
+       fetchBaseStats.setDexterity(dexterityRoll.getResult());
+       fetchBaseStats.setConstitution(constitutionRoll.getResult()); 
+       fetchBaseStats.setIntelligence(intelligenceRoll.getResult());
+       fetchBaseStats.setWisdom(wisdomRoll.getResult());
+       fetchBaseStats.setCharisma(charismaRoll.getResult());
+
+       //Text of the jlabels
+       baseStatsLabel1.setText("In order to play Dungeons and Dragons, your character " +fetchBaseStats.getName() + " will need attribute values");
+       strengthLabel.setText("Strength = " + String.valueOf(strengthRoll.getResult()));
+       dexterityLabel.setText("Dexterity = " + String.valueOf(dexterityRoll.getResult()));
+       constitutionLabel.setText("Constitution = " + String.valueOf(constitutionRoll.getResult()));
+       intelligenceLabel.setText("Intelligence = " + String.valueOf(intelligenceRoll.getResult()));
+       wisdomLabel.setText("Wisdom = " + String.valueOf(wisdomRoll.getResult()));
+       charismaLabel.setText("Charisma = " + String.valueOf(charismaRoll.getResult()));
+   }
+ 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -57,6 +54,9 @@ ability, in order to generate a new random roll for each ability*/
         wisdomLabel = new javax.swing.JLabel();
         charismaLabel = new javax.swing.JLabel();
         strengthLabel = new javax.swing.JLabel();
+        rerollDiceButton = new javax.swing.JButton();
+        rerollLabel = new javax.swing.JLabel();
+        rerollLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -64,7 +64,7 @@ ability, in order to generate a new random roll for each ability*/
 
         baseStatsLabel2.setText("4 6-Sided Dice are rolled with the highest three rolls being added together for each attribute...");
 
-        continueButton.setText("Continue");
+        continueButton.setText("CONTINUE");
         continueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 continueButtonActionPerformed(evt);
@@ -82,6 +82,17 @@ ability, in order to generate a new random roll for each ability*/
         charismaLabel.setText("Charisma =");
 
         strengthLabel.setText("Strength = ");
+
+        rerollDiceButton.setText("RE-ROLL DICE");
+        rerollDiceButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rerollDiceButtonActionPerformed(evt);
+            }
+        });
+
+        rerollLabel.setText("You may chose to mulligan these results");
+
+        rerollLabel2.setText("(Re-Roll the dice rolls once)");
 
         javax.swing.GroupLayout baseStatsPanelLayout = new javax.swing.GroupLayout(baseStatsPanel);
         baseStatsPanel.setLayout(baseStatsPanelLayout);
@@ -107,8 +118,16 @@ ability, in order to generate a new random roll for each ability*/
                             .addComponent(intelligenceLabel)
                             .addComponent(wisdomLabel)
                             .addComponent(charismaLabel)
-                            .addComponent(strengthLabel))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(strengthLabel))
+                        .addGap(161, 161, 161)
+                        .addGroup(baseStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rerollDiceButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(rerollLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(baseStatsPanelLayout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(rerollLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap())
         );
         baseStatsPanelLayout.setVerticalGroup(
             baseStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,16 +139,22 @@ ability, in order to generate a new random roll for each ability*/
                 .addGap(13, 13, 13)
                 .addComponent(strengthLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dexterityLabel)
+                .addGroup(baseStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(dexterityLabel)
+                    .addComponent(rerollLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(constitutionLabel)
+                .addGroup(baseStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(constitutionLabel)
+                    .addComponent(rerollLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(intelligenceLabel)
+                .addGroup(baseStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(intelligenceLabel)
+                    .addComponent(rerollDiceButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(wisdomLabel)
                 .addGroup(baseStatsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(baseStatsPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(continueButton)
                         .addGap(52, 52, 52))
                     .addGroup(baseStatsPanelLayout.createSequentialGroup()
@@ -163,39 +188,45 @@ ability, in order to generate a new random roll for each ability*/
   dispose();       
     }//GEN-LAST:event_continueButtonActionPerformed
 
+    private void rerollDiceButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rerollDiceButtonActionPerformed
+        //If user chooses to re-roll, the roll dice method is caled and the button disabled
+        rollDice();
+        rerollDiceButton.setEnabled(false);
+    }//GEN-LAST:event_rerollDiceButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BaseStatsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BaseStatsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BaseStatsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BaseStatsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(BaseStatsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(BaseStatsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(BaseStatsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(BaseStatsFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BaseStatsFrame().setVisible(true);
-            }
-        });
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            new BaseStatsFrame().setVisible(true);
+        }
+    });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -207,6 +238,9 @@ ability, in order to generate a new random roll for each ability*/
     private javax.swing.JButton continueButton;
     private javax.swing.JLabel dexterityLabel;
     private javax.swing.JLabel intelligenceLabel;
+    private javax.swing.JButton rerollDiceButton;
+    private javax.swing.JLabel rerollLabel;
+    private javax.swing.JLabel rerollLabel2;
     private javax.swing.JLabel strengthLabel;
     private javax.swing.JLabel wisdomLabel;
     // End of variables declaration//GEN-END:variables

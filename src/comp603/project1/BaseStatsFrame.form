@@ -63,9 +63,19 @@
                               <Component id="charismaLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="strengthLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="161" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="rerollDiceButton" max="32767" attributes="0"/>
+                              <Component id="rerollLabel" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                  <Component id="rerollLabel2" min="-2" pref="151" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -79,16 +89,25 @@
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Component id="strengthLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="dexterityLabel" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="dexterityLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rerollLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="constitutionLabel" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="constitutionLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rerollLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="intelligenceLabel" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="intelligenceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rerollDiceButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="wisdomLabel" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="continueButton" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       </Group>
@@ -115,7 +134,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="continueButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Continue"/>
+            <Property name="text" type="java.lang.String" value="CONTINUE"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="continueButtonActionPerformed"/>
@@ -149,6 +168,24 @@
         <Component class="javax.swing.JLabel" name="strengthLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Strength = "/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="rerollDiceButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="RE-ROLL DICE"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rerollDiceButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="rerollLabel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="You may chose to mulligan these results"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="rerollLabel2">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="(Re-Roll the dice rolls once)"/>
           </Properties>
         </Component>
       </SubComponents>

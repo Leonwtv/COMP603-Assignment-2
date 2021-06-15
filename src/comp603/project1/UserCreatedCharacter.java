@@ -1,4 +1,5 @@
 
+
 package comp603.project1;
 
 public class UserCreatedCharacter extends AttributesTemplate{

@@ -1,12 +1,12 @@
 Your Character:
-Name: Keil Oyr
-Race: Elf
-Race abilities: [Darkvision, Keen Seneses, Fey Ancestry, Trance]
-Class: Paladin
-Class traits: [Sacred Oath, Conviction, Smite, Fighting Style]
-Strength: 17
-Dexterity: 17
-Constitution: 14
-Intelligence: 16
-Wisdom: 13
-Charisma: 17
+Name: Jaroot Gor
+Race: Half-Orc
+Race abilities: [Darkvision, Menacing, Relentless Endurance, Savage Attacks]
+Class: Sorcerer
+Class traits: [Sorcery, Metamagic, Sorcerous Origin]
+Strength: 11
+Dexterity: 12
+Constitution: 16
+Intelligence: 11
+Wisdom: 14
+Charisma: 11

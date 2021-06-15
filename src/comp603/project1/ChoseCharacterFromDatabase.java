@@ -14,54 +14,48 @@ import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 
-public class Connect_To_Character_Database extends javax.swing.JFrame {
+public class ChoseCharacterFromDatabase extends javax.swing.JFrame {
     
 UserCreatedCharacter fetchPreMade = UserCreatedCharacter.getInstance();
 
-
-    public Connect_To_Character_Database() {
-        
+    public ChoseCharacterFromDatabase() {
       initComponents();
       fillNameJComboBox();
     }
  
-    //Method to populate the "Sort by name" JComboBox with all characters
+    //Method to populate the 'sortByName JComboBox with all characters in the table
     private void fillNameJComboBox(){
         
-     try
-     {
-         Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-         Connection conn = DriverManager.getConnection("jdbc:derby:Characters_Database_v;create=true", "" , "");
+        try
+        {
+            //Database Connection
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+            Connection conn = DriverManager.getConnection("jdbc:derby:Characters_Database_v;create=true", "" , "");
+
+            Statement stat = conn.createStatement();
+            String selectQuery = "select * from CHARACTER_TABLE";
+            ResultSet rs=stat.executeQuery(selectQuery);
+            while(rs.next())
+        {
+
+        //Setting the variable values of the curent character object to those of the selected character from the database
+        sortByNameJComboBox.addItem(rs.getString("NAME"));
+        fetchPreMade.setRace(rs.getString("RACE"));
+        fetchPreMade.setPlayerClass(rs.getString("CLASS"));
+        fetchPreMade.setStrength(rs.getInt("STRENGTH"));
+        fetchPreMade.setDexterity(rs.getInt("DEXTERITY"));
+        fetchPreMade.setConstitution(rs.getInt("CONSTITUTION"));
+        fetchPreMade.setIntelligence(rs.getInt("INTELLIGENCE"));
+        fetchPreMade.setWisdom(rs.getInt("WISDOM"));
+        fetchPreMade.setCharisma(rs.getInt("CHARISMA"));
+        }
          
-         Statement stat = conn.createStatement();
-         String selectQuery = "select * from CHARACTER_TABLE";
-         ResultSet rs=stat.executeQuery(selectQuery);
-         while(rs.next())
-         {
-            
-            sortByNameJComboBox.addItem(rs.getString("NAME"));
-            
-            //Setting the variable values of the curent character object to those of the selected character from the database
-            fetchPreMade.setRace(rs.getString("RACE"));
-            fetchPreMade.setPlayerClass(rs.getString("CLASS"));
-            fetchPreMade.setStrength(rs.getInt("STRENGTH"));
-            fetchPreMade.setDexterity(rs.getInt("DEXTERITY"));
-            fetchPreMade.setConstitution(rs.getInt("CONSTITUTION"));
-            fetchPreMade.setIntelligence(rs.getInt("INTELLIGENCE"));
-            fetchPreMade.setWisdom(rs.getInt("WISDOM"));
-            fetchPreMade.setCharisma(rs.getInt("CHARISMA"));
-         }
-         
-     }catch(Exception e)
-     {
-         System.out.println(e);
-     } 
+        }catch(Exception e)
+        {
+            System.out.println(e);
+        } 
     }
   
-
-  
-
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -158,16 +152,12 @@ UserCreatedCharacter fetchPreMade = UserCreatedCharacter.getInstance();
 
     private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
 
-    // TODO add your handling code here:
-
    ConclusionFrame conclusionFrame = new ConclusionFrame();
    conclusionFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
    conclusionFrame.setBounds(200, 200, 600, 600);
    conclusionFrame.setTitle("DND CHARACTER CREATOR");
    conclusionFrame.setVisible(true);
-   
    dispose();  
-    
     }//GEN-LAST:event_continueButtonActionPerformed
 
     /**
@@ -187,14 +177,22 @@ UserCreatedCharacter fetchPreMade = UserCreatedCharacter.getInstance();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Connect_To_Character_Database.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChoseCharacterFromDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Connect_To_Character_Database.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChoseCharacterFromDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Connect_To_Character_Database.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChoseCharacterFromDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Connect_To_Character_Database.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ChoseCharacterFromDatabase.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -207,7 +205,7 @@ UserCreatedCharacter fetchPreMade = UserCreatedCharacter.getInstance();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Connect_To_Character_Database().setVisible(true);
+                new ChoseCharacterFromDatabase().setVisible(true);
             }
         });
     }
