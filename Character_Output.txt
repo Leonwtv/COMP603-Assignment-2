@@ -1,12 +1,12 @@
 Your Character:
-Name: Per Iro
-Race: Half-Elf
-Race abilities: [Darkvision, Fey Ancestry, Skill Diversity]
-Class: Warlock
-Class traits: [Otherwordly Patron, Pact Boon, Pact Magic]
-Strength: 15
-Dexterity: 9
-Constitution: 12
-Intelligence: 10
-Wisdom: 7
-Charisma: 10
+Name: Keil Oyr
+Race: Elf
+Race abilities: [Darkvision, Keen Seneses, Fey Ancestry, Trance]
+Class: Paladin
+Class traits: [Sacred Oath, Conviction, Smite, Fighting Style]
+Strength: 17
+Dexterity: 17
+Constitution: 14
+Intelligence: 16
+Wisdom: 13
+Charisma: 17

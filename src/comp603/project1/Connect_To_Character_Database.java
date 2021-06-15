@@ -18,46 +18,47 @@ public class Connect_To_Character_Database extends javax.swing.JFrame {
     
 UserCreatedCharacter fetchPreMade = UserCreatedCharacter.getInstance();
 
-Connection con;
-PreparedStatement pst;
-ResultSet rs;
 
     public Connect_To_Character_Database() {
         
-        initComponents();
-        Connection con= null;
-        PreparedStatement pst =null;
-        ResultSet rs = null;
-       
+      initComponents();
+      fillNameJComboBox();
     }
-    
-    public void NewJFrame()
-    {
-    initComponents();
-    comboBox();
-    }
-    
-    private void comboBox(){
+ 
+    //Method to populate the "Sort by name" JComboBox with all characters
+    private void fillNameJComboBox(){
         
      try
      {
-         con = DriverManager.getConnection("jdbc:derby:Characters_Database_X;create=true");
-         String sql = "select * from CHARCACTER_TABLE ";
-         pst = con.prepareStatement(sql);
-         rs= pst.executeQuery();
+         Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+         Connection conn = DriverManager.getConnection("jdbc:derby:Characters_Database_v;create=true", "" , "");
          
+         Statement stat = conn.createStatement();
+         String selectQuery = "select * from CHARACTER_TABLE";
+         ResultSet rs=stat.executeQuery(selectQuery);
          while(rs.next())
          {
-            String name = rs.getString("NAME");
-            databaseCharactersJComboBox.addItem(name);
             
+            sortByNameJComboBox.addItem(rs.getString("NAME"));
+            
+            //Setting the variable values of the curent character object to those of the selected character from the database
+            fetchPreMade.setRace(rs.getString("RACE"));
+            fetchPreMade.setPlayerClass(rs.getString("CLASS"));
+            fetchPreMade.setStrength(rs.getInt("STRENGTH"));
+            fetchPreMade.setDexterity(rs.getInt("DEXTERITY"));
+            fetchPreMade.setConstitution(rs.getInt("CONSTITUTION"));
+            fetchPreMade.setIntelligence(rs.getInt("INTELLIGENCE"));
+            fetchPreMade.setWisdom(rs.getInt("WISDOM"));
+            fetchPreMade.setCharisma(rs.getInt("CHARISMA"));
          }
-     }catch(Exception ex)
+         
+     }catch(Exception e)
      {
-        JOptionPane.showMessageDialog(null,ex);
-     }
-        
+         System.out.println(e);
+     } 
     }
+  
+
   
 
    
@@ -66,18 +67,32 @@ ResultSet rs;
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        databaseCharactersJComboBox = new javax.swing.JComboBox<>();
+        sortByNameJComboBox = new javax.swing.JComboBox<>();
         chooseCharacterPanel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
+        raceLabel = new javax.swing.JLabel();
+        classLabel = new javax.swing.JLabel();
+        continueButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        databaseCharactersJComboBox.addActionListener(new java.awt.event.ActionListener() {
+        sortByNameJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                databaseCharactersJComboBoxActionPerformed(evt);
+                sortByNameJComboBoxActionPerformed(evt);
             }
         });
 
-        chooseCharacterPanel.setText("Choose Character From The Database");
+        chooseCharacterPanel.setText("Choose Character From The Entire Database");
+
+        jLabel1.setText("Character Details:");
+
+        continueButton.setText("Continue");
+        continueButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                continueButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -85,19 +100,36 @@ ResultSet rs;
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(177, 177, 177)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(databaseCharactersJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(chooseCharacterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(continueButton)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(sortByNameJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(chooseCharacterPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(raceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(classLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(490, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(225, Short.MAX_VALUE)
+                .addGap(53, 53, 53)
                 .addComponent(chooseCharacterPanel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(sortByNameJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(databaseCharactersJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(212, 212, 212))
+                .addComponent(raceLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
+                .addComponent(continueButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(classLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(240, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -116,9 +148,27 @@ ResultSet rs;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void databaseCharactersJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_databaseCharactersJComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_databaseCharactersJComboBoxActionPerformed
+    private void sortByNameJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sortByNameJComboBoxActionPerformed
+
+    //Label updated with values of databaseCharacter
+    String selectedValue;
+    selectedValue = sortByNameJComboBox.getSelectedItem().toString();
+    nameLabel.setText("Name:  " +selectedValue);
+    }//GEN-LAST:event_sortByNameJComboBoxActionPerformed
+
+    private void continueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continueButtonActionPerformed
+
+    // TODO add your handling code here:
+
+   ConclusionFrame conclusionFrame = new ConclusionFrame();
+   conclusionFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+   conclusionFrame.setBounds(200, 200, 600, 600);
+   conclusionFrame.setTitle("DND CHARACTER CREATOR");
+   conclusionFrame.setVisible(true);
+   
+   dispose();  
+    
+    }//GEN-LAST:event_continueButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,7 +217,12 @@ ResultSet rs;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel chooseCharacterPanel;
-    private javax.swing.JComboBox<String> databaseCharactersJComboBox;
+    private javax.swing.JLabel classLabel;
+    private javax.swing.JButton continueButton;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel nameLabel;
+    private javax.swing.JLabel raceLabel;
+    private javax.swing.JComboBox<String> sortByNameJComboBox;
     // End of variables declaration//GEN-END:variables
 }

@@ -29,12 +29,12 @@ public class Main {
     launchPageFrame.setVisible(true);
         
    //Database Creation and connection
-    String databaseURL = "jdbc:derby:Characters_Database_X;create=true";
+    String databaseURL = "jdbc:derby:Characters_Database_v;create=true";
  
         try (Connection conn = DriverManager.getConnection(databaseURL)) {
             Statement statement = conn.createStatement();
  
-            if (!doesTableExists("jdbc:derby:Characters_Database_X;create=true", conn)) {
+            if (!doesTableExists("jdbc:derby:Characters_Database_v;create=true", conn)) {
               
                 //Table set up
                     String sql = "CREATE TABLE CHARACTER_TABLE (NAME varchar(128) PRIMARY KEY, RACE varchar(128), CLASS varchar(128), STRENGTH int, DEXTERITY int, CONSTITUTION int, INTELLIGENCE int, WISDOM int, CHARISMA int, ABILITIES varchar(128), CLASSFEATURES varchar(128))";

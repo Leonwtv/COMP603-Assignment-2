@@ -232,7 +232,7 @@ WriteToFile fetchOutputCharacters = new WriteToFile();
 
         try {
         //DataBase Table Connection
-         String databaseURL = "jdbc:derby:Characters_Database_X;create=true";
+         String databaseURL = "jdbc:derby:Characters_Database_v;create=true";
 
          
         Connection con = DriverManager.getConnection(databaseURL);    
